@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ResourcesAndDataBinding.Views.CollectionViewPage">
+    <ContentPage.Content>
+
+        <StackLayout>
+
+            <CollectionView x:Name="JournalList" 
+                            ItemsSource="{Binding Journals}" 
+                            Margin="15"
+                            SelectionMode="Single"
+                            SelectionChanged="JournalList_SelectionChanged"
+                            VerticalScrollBarVisibility="Never"
+                            HorizontalScrollBarVisibility="Never">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="10">
+                            <Label Text="pages:"/>
+                            <Entry Text="{Binding pages}"/>
+                            <Label Text="name:"/>
+                            <Entry Text="{Binding name}"/>
+                            <StackLayout Orientation="Horizontal">
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Label Text="No data is available" 
+                           TextColor="Red" 
+                           FontSize="Large"
+                           VerticalOptions="Center" 
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"/>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

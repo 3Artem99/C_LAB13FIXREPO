@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ResourcesAndDataBinding.Views.CarouselViewPage" Padding="0,20,0,20">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <CarouselView x:Name="PeopleList" 
+                          ItemsSource="{Binding Journals}" 
+                          CurrentItemChanged="PeopleList_CurrentItemChanged" 
+                          PositionChanged="PeopleList_PositionChanged" 
+                          CurrentItem="{Binding SelectedJournal}"
+                          IndicatorView="PersonIndicatorView">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" 
+                                       SnapPointsAlignment="Center" 
+                                       SnapPointsType="Mandatory"/>
+                </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="False" BorderColor="Blue" Margin="20">
+                            <StackLayout>
+                                <Label Text="pages:"/>
+                                <Entry Text="{Binding pages}"/>
+                                <Label Text="name:"/>
+                                <Entry Text="{Binding name}"/>
+                                <StackLayout Orientation="Horizontal">  
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="PersonIndicatorView"
+                   IndicatorColor="LightGray"
+                   SelectedIndicatorColor="DarkGray"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

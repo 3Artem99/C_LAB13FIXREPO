@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ResourcesAndDataBinding.Views.JournalsListView"
+             xmlns:local="clr-namespace:ResourcesAndDataBinding.Views">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BoolToColorConverter x:Key="BoolToColorConverter" />
+            <DataTemplate x:Key="JournalTemplate">
+                <ViewCell>
+                    <ViewCell.View>
+                        <Frame HasShadow="False" BorderColor="Blue" Margin="10">
+                            <StackLayout>
+                                <Label Text="pages:"/>
+                                <Entry Text="{Binding pages}"/>
+                                <Label Text="name:"/>
+                                <Entry Text="{Binding name}"/>
+
+                                <StackLayout Orientation="Horizontal">
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="JournalList" ItemsSource="{Binding}"
+                      ItemSelected="JournalList_ItemSelected"
+                      HasUnevenRows="True" ItemTemplate="{StaticResource JournalTemplate}" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

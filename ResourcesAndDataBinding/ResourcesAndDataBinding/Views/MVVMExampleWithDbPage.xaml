@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ResourcesAndDataBinding.Views.MVVMExampleWithDbPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <RefreshView RefreshColor="Blue" 
+                     IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshCommand}">
+                <CollectionView x:Name="JournalsList" 
+                     ItemsSource="{Binding Journals}"
+                     SelectionMode="Single" 
+                     SelectedItem="{Binding SelectedJournal}"
+                     VerticalScrollBarVisibility="Never" 
+                     HorizontalScrollBarVisibility="Never">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="10">
+                                <Label Text="pages:"/>
+
+                                <Entry Text="{Binding pages}"/>
+
+                                <Label Text="name:"/>
+
+                                <Entry Text="{Binding name}"/>
+                                <StackLayout Orientation="Horizontal">
+
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Add" Command="{Binding AddCommand}"/>
+                <Button Text="Delete" Command="{Binding DeleteCommand}" 
+                    CommandParameter="{Binding Source={x:Reference JournalsList}, 
+                    Path=SelectedItem}"/>
+                <Button Text="Save All" Command="{Binding SaveAllCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
